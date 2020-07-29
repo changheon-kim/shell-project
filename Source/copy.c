@@ -6,15 +6,18 @@
 
 int copy(char *source, char *target) {
     FILE *source_file, *target_file, *check_file;
+
     if((source_file = fopen(source, "r")) == NULL){
         printf("\nSorry, There is no such file : %s", source);
         return -2;
     }
+
     if(!((check_file = fopen(target, "r")) == NULL)) {
         printf("\nSorry, the file already exists : %s", target);
         fclose(check_file);
         return -2;
     }
+
     target_file = fopen(target, "w");
     char *buffer = (char*) malloc(BUFFER_SIZE);
     int read_size;
