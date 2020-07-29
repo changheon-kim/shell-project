@@ -16,8 +16,10 @@ int copy(char *source, char *target) {
         return -2;
     }
     target_file = fopen(target, "w");
-    char *buffer = (char*) malloc(sizeof(char) * BUFFER_SIZE);
-    while(fgets(buffer, BUFFER_SIZE, source_file) != NULL) {
+    char *buffer = (char*) malloc(BUFFER_SIZE);
+    int read_size;
+    while((read_size = fread(buffer, BUFFER_SIZE, 1, source_file)) > 0) {
+        // fwrite(buffer, BUFFER_SIZE, 1, target_file);
         fputs(buffer, target_file);
     }
     free(buffer);
