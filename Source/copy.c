@@ -21,8 +21,8 @@ int copy(char *source, char *target) {
     target_file = fopen(target, "w");
     char *buffer = (char*) malloc(BUFFER_SIZE);
     int read_size;
-    while((read_size = fread(buffer, BUFFER_SIZE, 1, source_file)) > 0) {
-        fwrite(buffer, BUFFER_SIZE, 1, target_file);
+    while((read_size = fread(buffer, sizeof(char), BUFFER_SIZE, source_file)) > 0) {
+        fwrite(buffer, sizeof(char), read_size, target_file);
     }
     free(buffer);
     fclose(source_file);
